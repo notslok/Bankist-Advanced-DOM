@@ -10,8 +10,24 @@ const nav = document.querySelector('.nav');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
-
+const bodyElement = document.body;
+let BackquoteClickCounter=1;
 ///////////////////////////////////////
+//Dark mode toggle
+bodyElement.addEventListener('keydown',function(event){
+  console.log(event.code);//Test
+  
+  if(event.code === "Backquote" && BackquoteClickCounter%2===0){
+    bodyElement.style.backgroundColor="#181818";
+    bodyElement.style.color="#f3f3f3";
+    BackquoteClickCounter++;
+  }else if(event.code === "Backquote" && BackquoteClickCounter%2!==0){
+    bodyElement.style.backgroundColor="#f3f3f3"
+    bodyElement.style.color="#444444";
+    BackquoteClickCounter++
+  }
+})
+
 // Modal window
 
 const openModal = function (e) {
@@ -52,35 +68,11 @@ btnScrollTo.addEventListener('click', function (e) {
     document.documentElement.clientWidth
   );
 
-  // Scrolling
-  // window.scrollTo(
-  //   s1coords.left + window.pageXOffset,
-  //   s1coords.top + window.pageYOffset
-  // );
-
-  // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // });
-
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 ///////////////////////////////////////
 // Page navigation
-
-// document.querySelectorAll('.nav__link').forEach(function (el) {
-//   el.addEventListener('click', function (e) {
-//     e.preventDefault();
-//     const id = this.getAttribute('href');
-//     console.log(id);
-//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
-//   });
-// });
-
-// 1. Add event listener to common parent element
-// 2. Determine what element originated the event
 
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
